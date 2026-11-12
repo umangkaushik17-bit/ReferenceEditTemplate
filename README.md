@@ -103,3 +103,4 @@ Inside Premiere Pro, open **Window > Extensions > MCP for Adobe Premiere Pro** (
    - Index all A-roll/B-roll footage (`index_raw_media.py`)
    - Build the coherent subclip & timeline plan (`select_optimal_subclips.py`)
    - Confirm the pre-flight plan, assemble the sequence in reverse-chronological order, generate DeepLabV3 cutouts (`isolate_subject_alpha.py`), grade via `virtual_scopes.py`, and master audio (`A1`/`A2`/`A3`).
+
