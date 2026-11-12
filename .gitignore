@@ -1,0 +1,60 @@
+# Heavy project media & archived edits (never commit raw footage or exports to GitHub)
+_archive/
+00_reference_style/*
+!00_reference_style/.gitkeep
+01_raw_media/**/*
+!01_raw_media/**/
+!01_raw_media/**/.gitkeep
+
+# Generated analysis manifests, frame dumps, and telemetry
+02_analysis/*
+!02_analysis/.gitkeep
+
+# Rendered VFX, cutouts, captions, and intermediate scratch files
+03_processed_vfx/**/*
+!03_processed_vfx/**/
+!03_processed_vfx/**/.gitkeep
+
+# Extracted reference music beds
+04_assets/music/*
+!04_assets/music/.gitkeep
+
+# Generic video / audio / Premiere project artifacts
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.m4v
+*.wav
+*.mp3
+*.aac
+*.flac
+*.m4a
+*.prproj
+Adobe Premiere Pro Auto-Save/
+Adobe Premiere Pro Preview Files/
+Adobe Premiere Pro Video Previews/
+Adobe Premiere Pro Audio Previews/
+Motion Graphics Template Media/
+
+# Python caches & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Node / Remotion dependencies & logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Temp, logs & OS artifacts
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+Desktop.ini

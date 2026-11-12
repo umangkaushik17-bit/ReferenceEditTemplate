@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "description": "Acoustic-indexed sound effects and music vault with pre-calculated peak transients",
+  "sfx": [
+    {
+      "id": "whoosh_fast_01",
+      "filename": "whoosh_fast_01.wav",
+      "category": "transition_whoosh",
+      "duration_sec": 0.85,
+      "peak_transient_ms": 320,
+      "spectral_centroid": "bright",
+      "recommended_gain_db": -14
+    },
+    {
+      "id": "sub_drop_heavy_01",
+      "filename": "sub_drop_heavy_01.wav",
+      "category": "impact_hook",
+      "duration_sec": 1.4,
+      "peak_transient_ms": 110,
+      "spectral_centroid": "deep_bass",
+      "recommended_gain_db": -12
+    },
+    {
+      "id": "pop_click_ui_01",
+      "filename": "pop_click_ui_01.wav",
+      "category": "graphic_pop",
+      "duration_sec": 0.25,
+      "peak_transient_ms": 40,
+      "spectral_centroid": "mid_click",
+      "recommended_gain_db": -16
+    }
+  ],
+  "music": []
+}

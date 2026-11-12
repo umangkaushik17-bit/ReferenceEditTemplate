@@ -1,0 +1,39 @@
+{
+  "looks": {
+    "clean_tech_creator": {
+      "exposure": 0.15,
+      "contrast": 18.0,
+      "highlights": -18.0,
+      "shadows": 12.0,
+      "whites": 8.0,
+      "blacks": -8.0,
+      "saturation": 106.0,
+      "vibrance": 14.0,
+      "sharpen": 18.0
+    },
+    "moody_cinematic_film": {
+      "exposure": -0.10,
+      "contrast": 24.0,
+      "highlights": -28.0,
+      "shadows": -8.0,
+      "whites": -5.0,
+      "blacks": -12.0,
+      "saturation": 92.0,
+      "vibrance": 8.0,
+      "faded_film": 18.0,
+      "vignette": -0.6
+    },
+    "high_energy_viral": {
+      "exposure": 0.25,
+      "contrast": 30.0,
+      "highlights": -15.0,
+      "shadows": 20.0,
+      "whites": 12.0,
+      "blacks": -6.0,
+      "saturation": 115.0,
+      "vibrance": 22.0,
+      "sharpen": 25.0
+    }
+  }
+}
+

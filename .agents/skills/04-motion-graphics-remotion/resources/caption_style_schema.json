@@ -1,0 +1,39 @@
+{
+  "default_profile": "viral_karaoke_highlight",
+  "styles": {
+    "viral_karaoke_highlight": {
+      "font_family": "Montserrat, Impact, Arial Black",
+      "font_size_vertical": 68,
+      "font_size_horizontal": 48,
+      "text_transform": "uppercase",
+      "font_weight": "900",
+      "inactive_color": "#FFFFFF",
+      "active_highlight_color": "#FFE600",
+      "active_scale_multiplier": 1.12,
+      "stroke_color": "#000000",
+      "stroke_width": 6,
+      "drop_shadow": {
+        "color": "rgba(0,0,0,0.85)",
+        "blur": 12,
+        "offset_y": 6
+      },
+      "max_words_per_line": 3,
+      "y_anchor_percent": 78
+    },
+    "clean_tech_minimal": {
+      "font_family": "Inter, system-ui, sans-serif",
+      "font_size_vertical": 52,
+      "font_size_horizontal": 36,
+      "text_transform": "none",
+      "font_weight": "700",
+      "inactive_color": "#E2E8F0",
+      "active_highlight_color": "#38BDF8",
+      "active_scale_multiplier": 1.05,
+      "stroke_color": "#0F172A",
+      "stroke_width": 3,
+      "max_words_per_line": 4,
+      "y_anchor_percent": 82
+    }
+  }
+}
+
