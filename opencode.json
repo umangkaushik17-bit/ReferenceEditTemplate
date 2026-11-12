@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "premiere-pro": {
+        "type": "local",
+        "command": [
+          "premiere-pro-mcp"
+        ],
+        "environment": {
+          "PREMIERE_MCP_TELEMETRY": "0"
+        }
+      }
+    }
+  }
+}

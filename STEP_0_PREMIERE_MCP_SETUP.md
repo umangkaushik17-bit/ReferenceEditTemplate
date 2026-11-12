@@ -89,13 +89,35 @@ VS Code expects `"servers"` with `"type": "stdio"`:
 }
 ```
 
-### C. OpenAI Codex CLI (`~/.codex/config.toml`)
+### C. OpenCode CLI / IDE (`opencode.json` or `~/.config/opencode/opencode.json`)
+OpenCode uses a dedicated `"mcp": { "servers": { ... } }` schema with `"type": "local"`:
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "premiere-pro": {
+        "type": "local",
+        "command": [
+          "premiere-pro-mcp"
+        ],
+        "environment": {
+          "PREMIERE_MCP_TELEMETRY": "0"
+        }
+      }
+    }
+  }
+}
+```
+*(This repo already includes a pre-configured [`opencode.json`](opencode.json) in the workspace root. If you prefer using the OpenCode CLI directly, run: `opencode mcp add premiere-pro -- premiere-pro-mcp` or `opencode mcp add premiere-pro --global -- premiere-pro-mcp`)*
+
+### D. OpenAI Codex CLI (`~/.codex/config.toml`)
 ```toml
 [mcp_servers.premiere-pro]
 command = "premiere-pro-mcp"
 ```
 
-### D. Legacy Handshake Fallback (Any Client Failing `server/discover`)
+### E. Legacy Handshake Fallback (Any Client Failing `server/discover`)
 If an older IDE or MCP client fails modern `2026-07-28` capability negotiation, add `"PREMIERE_MCP_PROTOCOL_MODE": "legacy"` under `"env"` (or pass `-LegacyProtocol` to `setup_premiere_bridge.ps1`) and restart the IDE.
 
 ---

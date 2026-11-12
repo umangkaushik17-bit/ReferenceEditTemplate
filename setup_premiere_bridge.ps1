@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Step 0 setup and diagnostic script to bridge Adobe Premiere Pro MCP to any IDE.
 .DESCRIPTION
@@ -10,7 +10,7 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet("all", "antigravity", "cursor", "vscode", "windsurf", "claude-code", "claude-desktop", "codex")]
+    [ValidateSet("all", "antigravity", "cursor", "vscode", "windsurf", "claude-code", "claude-desktop", "codex", "opencode")]
     [string]$Ide = "all",
     [switch]$Install,
     [switch]$CheckOnly,
@@ -207,6 +207,27 @@ function Show-ClientConfigs {
         Write-Host $vscodeJson
     }
 
+    $opencodeCmd = if ($NodeExe -and $EntryJs) { @($NodeExe, $EntryJs) } else { @("premiere-pro-mcp") }
+    $opencodeObj = [ordered]@{
+        "`$schema" = "https://opencode.ai/config.json"
+        mcp        = [ordered]@{
+            servers = [ordered]@{
+                "premiere-pro" = [ordered]@{
+                    type        = "local"
+                    command     = $opencodeCmd
+                    environment = $serverObj.env
+                }
+            }
+        }
+    }
+    $opencodeJson = ($opencodeObj | ConvertTo-Json -Depth 6)
+
+    if ($Ide -in @("all", "opencode")) {
+        Write-Host "`n--- OpenCode (opencode.json or ~/.config/opencode/opencode.json) ---" -ForegroundColor White
+        Write-Host "CLI alternative: opencode mcp add premiere-pro -- premiere-pro-mcp" -ForegroundColor DarkGray
+        Write-Host $opencodeJson
+    }
+
     if ($Ide -in @("all", "codex")) {
         Write-Host "`n--- OpenAI Codex CLI (%USERPROFILE%\.codex\config.toml) ---" -ForegroundColor White
         if ($EntryJs) {
@@ -226,6 +247,10 @@ function Show-ClientConfigs {
         if ($Ide -in @("all", "claude-code", "antigravity")) {
             Set-Content -Path (Join-Path $root ".mcp.json") -Value $mcpServersJson -Encoding UTF8
             Write-Host "[OK] Wrote $(Join-Path $root '.mcp.json')" -ForegroundColor Green
+        }
+        if ($Ide -in @("all", "opencode")) {
+            Set-Content -Path (Join-Path $root "opencode.json") -Value $opencodeJson -Encoding UTF8
+            Write-Host "[OK] Wrote $(Join-Path $root 'opencode.json')" -ForegroundColor Green
         }
         if ($Ide -in @("all", "cursor")) {
             $cursorDir = Join-Path $root ".cursor"

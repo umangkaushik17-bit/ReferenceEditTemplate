@@ -16,7 +16,7 @@ while [[ $# -gt 0 ]]; do
     --write-workspace-config) WRITE_WORKSPACE_CONFIG=1; shift ;;
     --legacy) LEGACY_PROTOCOL=1; shift ;;
     -h|--help)
-      echo "Usage: ./setup_premiere_bridge.sh [--install] [--check-only] [--write-workspace-config] [--legacy] [--ide all|antigravity|cursor|vscode|windsurf|claude-code|claude-desktop|codex]"
+      echo "Usage: ./setup_premiere_bridge.sh [--install] [--check-only] [--write-workspace-config] [--legacy] [--ide all|antigravity|cursor|vscode|windsurf|claude-code|claude-desktop|codex|opencode]"
       exit 0
       ;;
     *) echo "Unknown option: $1"; exit 1 ;;
@@ -95,6 +95,22 @@ VSCODE_JSON=$(cat <<EOF
 EOF
 )
 
+OPENCODE_JSON=$(cat <<EOF
+{
+  "\$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "premiere-pro": {
+        "type": "local",
+        "command": ["${NODE_EXE}", "${ENTRY_JS}"],
+        "environment": { ${ENV_JSON} }
+      }
+    }
+  }
+}
+EOF
+)
+
 echo "=== IDE MCP Configurations (${IDE}) ==="
 if [[ "$IDE" =~ ^(all|antigravity|cursor|windsurf|claude-code|claude-desktop)$ ]]; then
   echo "--- Universal mcpServers JSON ---"
@@ -103,6 +119,10 @@ fi
 if [[ "$IDE" =~ ^(all|vscode)$ ]]; then
   echo "--- VS Code / Copilot (.vscode/mcp.json) ---"
   echo "$VSCODE_JSON"
+fi
+if [[ "$IDE" =~ ^(all|opencode)$ ]]; then
+  echo "--- OpenCode (opencode.json) ---"
+  echo "$OPENCODE_JSON"
 fi
 if [[ "$IDE" =~ ^(all|codex)$ ]]; then
   echo "--- OpenAI Codex (~/.codex/config.toml) ---"
@@ -113,6 +133,10 @@ if [[ "$WRITE_WORKSPACE_CONFIG" -eq 1 && "$CHECK_ONLY" -eq 0 ]]; then
   if [[ "$IDE" =~ ^(all|claude-code|antigravity)$ ]]; then
     printf '%s\n' "$MCP_SERVERS_JSON" > .mcp.json
     echo "[OK] Wrote .mcp.json"
+  fi
+  if [[ "$IDE" =~ ^(all|opencode)$ ]]; then
+    printf '%s\n' "$OPENCODE_JSON" > opencode.json
+    echo "[OK] Wrote opencode.json"
   fi
   if [[ "$IDE" =~ ^(all|cursor)$ ]]; then
     mkdir -p .cursor
