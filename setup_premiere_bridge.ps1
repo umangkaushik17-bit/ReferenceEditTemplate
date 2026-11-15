@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Step 0 setup and diagnostic script to bridge Adobe Premiere Pro MCP to any IDE.
 .DESCRIPTION
@@ -122,6 +122,13 @@ function Test-BridgeHeartbeat {
     $bridgeDir = if (-not [string]::IsNullOrWhiteSpace($env:PREMIERE_TEMP_DIR)) { $env:PREMIERE_TEMP_DIR } else { Join-Path $tempBase "premiere-mcp-bridge" }
     $hbPath = Join-Path $bridgeDir "bridge-heartbeat.json"
     Write-Host "Bridge Temp Dir : $bridgeDir"
+    if (Test-Path $bridgeDir) {
+        $staleLocks = Get-ChildItem -Path $bridgeDir -Filter "busy_*.json" -ErrorAction SilentlyContinue | Where-Object { ((Get-Date) - $_.LastWriteTime).TotalSeconds -gt 20 }
+        foreach ($lk in $staleLocks) {
+            Remove-Item $lk.FullName -Force -ErrorAction SilentlyContinue
+            Write-Host "[CLEANUP] Removed stale CEP bridge lockfile: $($lk.Name)" -ForegroundColor Yellow
+        }
+    }
     if (-not (Test-Path $hbPath)) {
         Write-Host "[WAIT] Heartbeat not found ($hbPath). Open Premiere Pro -> Window > Extensions > MCP for Adobe Premiere Pro." -ForegroundColor Yellow
         return

@@ -1,10 +1,11 @@
 {
-  "version": "1.0",
+  "version": "2.1",
   "description": "Acoustic-indexed sound effects and music vault with pre-calculated peak transients",
   "sfx": [
     {
       "id": "whoosh_fast_01",
       "filename": "whoosh_fast_01.wav",
+      "path": "04_assets/sfx/whoosh_fast_01.wav",
       "category": "transition_whoosh",
       "duration_sec": 0.85,
       "peak_transient_ms": 320,
@@ -14,6 +15,7 @@
     {
       "id": "sub_drop_heavy_01",
       "filename": "sub_drop_heavy_01.wav",
+      "path": "04_assets/sfx/sub_drop_heavy_01.wav",
       "category": "impact_hook",
       "duration_sec": 1.4,
       "peak_transient_ms": 110,
@@ -23,11 +25,32 @@
     {
       "id": "pop_click_ui_01",
       "filename": "pop_click_ui_01.wav",
+      "path": "04_assets/sfx/pop_click_ui_01.wav",
       "category": "graphic_pop",
       "duration_sec": 0.25,
       "peak_transient_ms": 40,
       "spectral_centroid": "mid_click",
       "recommended_gain_db": -16
+    },
+    {
+      "id": "riser_swell_01",
+      "filename": "riser_swell_01.wav",
+      "path": "04_assets/sfx/riser_swell_01.wav",
+      "category": "tension_riser",
+      "duration_sec": 1.45,
+      "peak_transient_ms": 1200,
+      "spectral_centroid": "rising_bright",
+      "recommended_gain_db": -15
+    },
+    {
+      "id": "shutter_snap_01",
+      "filename": "shutter_snap_01.wav",
+      "path": "04_assets/sfx/shutter_snap_01.wav",
+      "category": "cut_accent",
+      "duration_sec": 0.18,
+      "peak_transient_ms": 25,
+      "spectral_centroid": "crisp_snap",
+      "recommended_gain_db": -15
     }
   ],
   "music": []

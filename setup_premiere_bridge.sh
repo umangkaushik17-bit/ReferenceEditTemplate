@@ -68,12 +68,17 @@ if [[ "$LEGACY_PROTOCOL" -eq 1 ]]; then
   ENV_JSON="${ENV_JSON}, \"PREMIERE_MCP_PROTOCOL_MODE\": \"legacy\""
 fi
 
+NODE_ESC="${NODE_EXE//\\/\\\\}"
+NODE_ESC="${NODE_ESC//\"/\\\"}"
+ENTRY_ESC="${ENTRY_JS//\\/\\\\}"
+ENTRY_ESC="${ENTRY_ESC//\"/\\\"}"
+
 MCP_SERVERS_JSON=$(cat <<EOF
 {
   "mcpServers": {
     "premiere-pro": {
-      "command": "${NODE_EXE}",
-      "args": ["${ENTRY_JS}"],
+      "command": "${NODE_ESC}",
+      "args": ["${ENTRY_ESC}"],
       "env": { ${ENV_JSON} }
     }
   }
@@ -86,8 +91,8 @@ VSCODE_JSON=$(cat <<EOF
   "servers": {
     "premiere-pro": {
       "type": "stdio",
-      "command": "${NODE_EXE}",
-      "args": ["${ENTRY_JS}"],
+      "command": "${NODE_ESC}",
+      "args": ["${ENTRY_ESC}"],
       "env": { ${ENV_JSON} }
     }
   }
@@ -102,7 +107,7 @@ OPENCODE_JSON=$(cat <<EOF
     "servers": {
       "premiere-pro": {
         "type": "local",
-        "command": ["${NODE_EXE}", "${ENTRY_JS}"],
+        "command": ["${NODE_ESC}", "${ENTRY_ESC}"],
         "environment": { ${ENV_JSON} }
       }
     }
